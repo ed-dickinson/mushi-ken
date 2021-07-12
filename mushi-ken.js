@@ -12,7 +12,7 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 //    prompt();
-    playerSelection = playerSelection.substr(0,1).toUpperCase() + playerSelection.substr(1).toLowerCase();
+//    playerSelection = playerSelection.substr(0,1).toUpperCase() + playerSelection.substr(1).toLowerCase();
     if (playerSelection == computerSelection) {
         return "You both chose " + computerSelection+ ", it's a tie.";
     } else if (playerSelection == 'Frog' && computerSelection == 'Slug' ||
@@ -43,4 +43,20 @@ function game() {
 
 
 
-game(); 
+//game(); 
+
+const frogCard = document.getElementById('frog-card');
+const slugCard = document.getElementById('slug-card');
+const snakeCard = document.getElementById('snake-card');
+
+const textDisplay = document.getElementById('below-text');
+
+frogCard.addEventListener('click', function() {
+    textDisplay.innerHTML = playRound(frog, computerPlay());
+});
+slugCard.addEventListener('click', function() {
+    textDisplay.innerHTML = playRound(slug, computerPlay());
+});
+snakeCard.addEventListener('click', function() {
+    textDisplay.innerHTML = playRound(snake, computerPlay());
+});
