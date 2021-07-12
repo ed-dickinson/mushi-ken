@@ -20,8 +20,7 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-//    prompt();
-//    playerSelection = playerSelection.substr(0,1).toUpperCase() + playerSelection.substr(1).toLowerCase();
+
     if (playerSelection == computerSelection) {
         return "You both chose " + computerSelection+ ", it's a tie.";
     } else if (playerSelection == 'Frog' && computerSelection == 'Slug' ||
@@ -38,11 +37,7 @@ function playRound(playerSelection, computerSelection) {
 };
 
 function game(playerSelection, computerSelection) {
-//    while (successfullGames < 5) {
-//        let playerSelection = prompt("Frog, Slug, or Snake?");
-//        let computerSelection = computerPlay();
-//        console.log(playRound(playerSelection, computerSelection));
-//    }
+
     if (successfullGames == 5 && score[0] > score[1]) {
         textDisplay.innerHTML = computerSelection + " beats " + playerSelection + ", you lose the game. Commiserations.";
         score = [0, 0];
@@ -72,12 +67,10 @@ function flashCard(card) {
     }
     
 }
-//game(); 
 
 function roundChoice(e) {
-//    console.log(e.target);
+
     let computerChoice = computerPlay();
-//    console.log(frogArray.indexOf(computerChoice));
     let card = cardArray[frogArray.indexOf(computerChoice)];
     console.log(card);
     flashCard(card);
