@@ -19,6 +19,7 @@ function computerPlay() {
     return frogArray[rand];
 }
 
+
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == computerSelection) {
@@ -36,6 +37,7 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
+        //keeps score and resets
 function game(playerSelection, computerSelection) {
 
     if (successfullGames == 5 && score[0] > score[1]) {
@@ -49,10 +51,15 @@ function game(playerSelection, computerSelection) {
     }
 }
 
-
+        //deflashes the two cards not selected by the computer
 function flashCard(card) {
     card.classList.add('comp-selected');
-    console.log(card);
+    let cardNo = cardArray.indexOf(card);
+    cardArray.forEach(cardInArray => {
+        if (cardInArray != card) {
+            cardInArray.classList.add('comp-notselected')
+        }
+    });
     let id = null;
     let flash = 0;
     clearInterval(id);
@@ -60,22 +67,24 @@ function flashCard(card) {
     function frame() {
         if (flash == 1) {
             card.classList.remove('comp-selected');
+            cardArray.forEach(cardInArray => {
+                if (cardInArray != card) {
+                    cardInArray.classList.remove('comp-notselected')
+                }
+            });
             clearInterval(id);
         } else {
             flash++;
         }
     }
-    
 }
-
+        // chooses the comp's card and assigns yours from the DOM
 function roundChoice(e) {
 
     let computerChoice = computerPlay();
     let card = cardArray[frogArray.indexOf(computerChoice)];
-    console.log(card);
     flashCard(card);
     
-//    let playerCard = cardArray.indexOf(e.target);
     let playerChoice = frogArray[cardArray.indexOf(e.target)]
     textDisplay.innerHTML = playRound(playerChoice, computerChoice);
     scoreDisplay.innerHTML = score[0] + ' - ' + score[1];
